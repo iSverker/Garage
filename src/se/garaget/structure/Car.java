@@ -19,4 +19,12 @@ public class Car extends Vehicle {
 		return this.fuelType == FuelType.electric; 
 	}
 	
+	// Returns info about the Motorcycile,
+	// including if it's autonomous
+	public String listVehicle() {
+		String vehicleInfo = registrationNumber + " (" + this.getClass().getSimpleName().toLowerCase() + "): " + numberOfSeats + " seats, " + vehicleLength / 100.0 + " m, is ";
+		vehicleInfo += autonomous ? "" : "not ";
+		return vehicleInfo + "an autonomous car.";
+	}
+	
 }

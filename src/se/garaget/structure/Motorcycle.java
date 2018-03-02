@@ -24,4 +24,16 @@ public class Motorcycle extends Vehicle {
 		return harleyDavidson;
 	}
 	
+	public void setHarleyDavidson() {
+		this.harleyDavidson = true;
+	}
+	
+	// Returns info about the Motorcycile,
+	// including if it's a Harley Davidson.
+	public String listVehicle() {
+		String vehicleInfo = registrationNumber + " (" + this.getClass().getSimpleName().toLowerCase() + "): " + numberOfSeats + " seats, " + vehicleLength / 100.0 + " m, is ";
+		vehicleInfo += harleyDavidson ? "" : "not ";
+		return vehicleInfo + "a Harley Davidson.";
+	}
+	
 }

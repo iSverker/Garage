@@ -23,5 +23,11 @@ public class Bus extends Vehicle {
 	public boolean isCoolVehicle() {
 		return storeys > 1;
 	}
+	
+	// Returns info about the Motorcycile,
+	// including if it's a Harley Davidson.
+	public String listVehicle() {
+		return registrationNumber + " (" + this.getClass().getSimpleName().toLowerCase() + "): " + numberOfSeats + " seats, " + vehicleLength / 100.0 + " m, has " + storeys + " storeys.";
+	}
 
 }

@@ -23,5 +23,13 @@ public class Airplane extends Vehicle {
 	public boolean isCoolVehicle() {		
 		return true;
 	}
+	
+	// Returns info about the aeroplane
+	// including that it's a cool vehicle!
+	public String listVehicle() {
+		String vehicleInfo = registrationNumber + " (" + this.getClass().getSimpleName().toLowerCase() + "): " + numberOfSeats + " seats, " + vehicleLength / 100.0 + " m, is ";
+		vehicleInfo += isCoolVehicle() ? "" : "not ";
+		return vehicleInfo + "a cool vehicle.";
+	}
 
 }
