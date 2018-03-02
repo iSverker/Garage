@@ -1,5 +1,8 @@
 package se.garaget.structure;
-import se.garaget.misc.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import se.garaget.misc.GarageFullException;
 
 public class Garage {
 	
@@ -11,19 +14,20 @@ public class Garage {
 	private int numberOfVehicles = 0;
 	
 	// Create the inventory/"parking spots"
-	private Vehicle[] inventory = new Vehicle[maxVehicles];
+	private List<Vehicle> inventory = new ArrayList<Vehicle>();
 			
-	public void addVehicle(Vehicle vehicle) throws GarageFullException {
+	public void parkVehicle(Vehicle vehicle) throws GarageFullException {
 		
 		// If the garage is not full, 
 		// add the new vehicle at position numberOfVehicles
 		// and increase the value of numberOfVehicles
-		if (numberOfVehicles < maxVehicles) {
-			inventory[numberOfVehicles++] = vehicle;
+		if (inventory.size() < maxVehicles) {
+			inventory.add(vehicle);
 		} else throw new GarageFullException();
 		
 		//TODO: Remove this message
-		System.out.println("A vehicle of type " + vehicle.getClass() + " was added to the garage.");
+		System.out.println("A vehicle of type " + vehicle.getClass().getSimpleName() + " was added to the garage.");
+		System.out.println("Now we have " + inventory.size() + " vehicles.\n");
 	}
 	
 	public int numberOfVehicles() {
