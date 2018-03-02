@@ -42,5 +42,6 @@ public abstract class Vehicle {
 	// Must be implemented in subclasses.
 	
 	public abstract boolean isCoolVehicle();
+	public abstract String listVehicle();
 
 }
