@@ -24,7 +24,8 @@ public class Main {
 		}
 
 		// Dra igång användargränssnittet
-		// UI ui = new UI();
+		UI ui = new UI();
+		UI.welcome();
 
 	}
 
