@@ -1,23 +1,19 @@
 package se.garaget.structure;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import se.garaget.misc.GarageFullException;
+import java.util.Set;
 
 public class Garage {
 
 	// Set limit to 100 vehicles
 	private int maxVehicles = 100;
 
-	// When the garage is created,
-	// it has no vehicles.
-	private int numberOfVehicles = 0;
-
 	// Create the inventory/"parking spots"
 	private List<Vehicle> inventory = new ArrayList<Vehicle>();
 
-	public void parkVehicle(Vehicle vehicle) throws GarageFullException {
+	public void parkVehicle(Vehicle vehicle) {
 
 		// If the garage is not full,
 		// add the new vehicle at position numberOfVehicles
@@ -25,12 +21,66 @@ public class Garage {
 		if (inventory.size() < maxVehicles) {
 			inventory.add(vehicle);
 		} else
-			throw new GarageFullException();
+			System.out.println("Garage already full.");
+
+	}
+
+	// Check out vehicle from garage
+	// If the vehicle is in the garage,
+	// remove it from the list.
+
+	public void checkOutVehicle(String regNo) {
+
+		// First, set variable that keeps track of
+		// whether a vehicle has been checked out.
+		boolean vehicleCheckedOut = false;
+
+		// Loop through the inventory. If same registration numer
+		// is found, set vehicleCheckedOut to true, remove the vehicle
+		// from the list and break out of the loop.
+		for (Vehicle v : inventory) {
+			if (v.getRegistrationNumber() == regNo) {
+				vehicleCheckedOut = true;
+				inventory.remove(v);
+				break;
+			}
+		}
+
+		// Tell the user if the check out was successful.
+		if (vehicleCheckedOut) {
+			System.out.println("Vehicle " + regNo + " checked out.");
+		} else {
+			System.out.println("The was no " + regNo + " in the garage.");
+		}
+
+	}
+
+	public void findVehicleByRegNo(String regNo) {
+
+		// First, set variable that keeps track of
+		// whether a vehicle has been checked out.
+		boolean vehicleFound = false;
+
+		// Loop through the inventory. If same registration numer
+		// is found, set vehicleCheckedOut to true, remove the vehicle
+		// from the list and break out of the loop.
+		for (Vehicle v : inventory) {
+			if (v.getRegistrationNumber().equalsIgnoreCase(regNo)) {
+				System.out.println("Found: " + v.getVehicleData());
+				vehicleFound = true;
+			}
+		}
+
+		// If we didn't find any vehicles, say that.
+		// (Otherwise we've already listed at least 1 vehicle.)
+		if (!vehicleFound) {
+			System.out.println("No vehicle found.");
+		}
 
 	}
 
 	public int numberOfVehicles() {
-		return numberOfVehicles;
+		return inventory.size();
 	}
 
 	// Lists all vehicles in the garage
@@ -42,27 +92,16 @@ public class Garage {
 
 	// Lists all vehicle types in the garage
 	public void listAllVehicleTypes() {
-		int numberOfTypes = 0;
-		String[] vehicleType = new String[100];
 
-		// Loop through all vehicles
-		// to find unlisted types.
+		// Loop through all vehicles to find unlisted types.
+		Set<String> allVehicleTypes = new HashSet<>();
+
 		for (Vehicle v : inventory) {
-
-			// Variable to track if the type
-			// is added to the list yet.
-			boolean found = false;
-
-			if (numberOfTypes == 0) {
-				vehicleType[numberOfTypes++] = v.getClass().getSimpleName();
-			} else {
-				for (int listPosition = 0; listPosition < numberOfTypes && !found; listPosition++) {
-					// If the vehicle is in the list type,
-					// then break out of the loop.
-					System.out.println(v.getClass().getSimpleName());
-				}
-			}
+			// Adds a vehicle to Set if it doesn't already exist.
+			allVehicleTypes.add(v.getClass().getSimpleName());
 		}
+
+		System.out.println("Current vehicles in garage: " + allVehicleTypes);
 
 	}
 

@@ -31,5 +31,5 @@ public class Airplane extends Vehicle {
 		vehicleInfo += isCoolVehicle() ? "" : "not ";
 		return vehicleInfo + "a cool vehicle.";
 	}
-
+	
 }

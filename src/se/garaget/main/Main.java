@@ -21,14 +21,12 @@ public class Main {
 			garage.parkVehicle(motorcycle1);
 			garage.parkVehicle(motorcycle2);
 			garage.parkVehicle(boat1);
-		} catch (GarageFullException | CannotCreateVehicleException e) {
+		} catch (CannotCreateVehicleException e) {
 			e.printStackTrace();
 		}
-		
-		garage.listAllVehicles();
-		
-		garage.listAllVehicleTypes();
 
+		garage.findVehicleByRegNo("My bike");
+		
 		// Dra igång användargränssnittet
 		UI ui = new UI();
 		UI.welcome();
